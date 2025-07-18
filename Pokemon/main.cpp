@@ -107,6 +107,20 @@ public:
     }
 };
 
+void castSpell(int MagicLevel) {
+    cout << "Casting spell with magic level: "<<MagicLevel;
+}
+
+void brewElixir(int& MagicLevel) {
+    MagicLevel += 10;
+    castSpell(MagicLevel);
+}
+
+void brewPotion(int MagicLevel) {
+    MagicLevel += 50;
+    castSpell(MagicLevel);
+}
+
 int main() {
 
     //Creating Obejcts of ProffessorOak,Pokemon and player class
@@ -133,6 +147,7 @@ int main() {
     cout << "Professor Oak: " << player.chosenPokemon.name << " and you, " << player.name << ", are going to be the best of friends!\n";
     cout << "Professor Oak: Your journey begins now! Get ready to explore the vast world of Pokemon!\n";
 
+    int MagicLevel = 30;
 
     /*// Variables to store player name and chosen Pokemon
     string player_name;
