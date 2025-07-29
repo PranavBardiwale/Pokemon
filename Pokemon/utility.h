@@ -1,0 +1,9 @@
+#pragma once
+class utility
+{
+public :
+	static void clearConsole();
+	static void waitForEnter();
+	static void clearInputBuffer();
+};
+
