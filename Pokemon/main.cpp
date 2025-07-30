@@ -1,13 +1,11 @@
-class Player;
-class Pokemon;
-enum PokemonType;
 #include "PokemonChoice.h"
-
+#include "PokemonType.h"
 #include "Utility.h"
 #include <iostream>
 #include <limits> // Include this header to use numeric_limits
 #include <string>
 using namespace std;
+#include "player.h"
 
 // ProfessorOak class definition
 class ProfessorOak {
