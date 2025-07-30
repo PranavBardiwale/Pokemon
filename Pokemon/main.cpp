@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-// Pokemon class definition
+/*/ Pokemon class definition
 class Pokemon {
 public:
     string name;
@@ -40,7 +40,7 @@ public:
     }
 
     void attack() { cout << name << " attacks with a powerful move!\n"; }
-};
+};*/
 
 #include "player.h"
 
