@@ -1,8 +1,5 @@
 // Player.h
 #include <string>
-#include "PokemonType.h"
-#include "PokemonChoice.h"
-#include "utility.h"
 using namespace std;
 
 class Player {
