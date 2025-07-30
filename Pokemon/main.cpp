@@ -1,48 +1,13 @@
+class Player;
+class Pokemon;
+enum PokemonType;
 #include "PokemonChoice.h"
-#include "PokemonType.h"
-#include "utility.h"
+
+#include "Utility.h"
 #include <iostream>
 #include <limits> // Include this header to use numeric_limits
 #include <string>
 using namespace std;
-
-/*/ Pokemon class definition
-class Pokemon {
-public:
-    string name;
-    PokemonType type;
-    int health;
-
-    // Default constructor
-    Pokemon() {
-        name = "Unknown";
-        type = PokemonType::NORMAL;
-        health = 50;
-    }
-
-    // Parameterized constructor
-    Pokemon(string p_name, PokemonType p_type, int p_health) {
-        name = p_name;
-        type = p_type;
-        health = p_health;
-    }
-
-    // Copy constructor
-    Pokemon(const Pokemon& other) {
-        name = other.name;
-        type = other.type;
-        health = other.health;
-    }
-
-    // Destructor
-    ~Pokemon() {
-        // Destructor message removed
-    }
-
-    void attack() { cout << name << " attacks with a powerful move!\n"; }
-};*/
-
-#include "player.h"
 
 // ProfessorOak class definition
 class ProfessorOak {

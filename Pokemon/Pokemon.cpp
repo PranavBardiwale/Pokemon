@@ -1,5 +1,6 @@
 #include "Pokemon.h"
 #include <iostream>
+#include"PokemonType.h"
 
 Pokemon::Pokemon():name("unknown"),type(PokemonType::NORMAL),health(50){}
 // Parameterized constructor
