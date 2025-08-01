@@ -1,5 +1,5 @@
 #include "Grass.h"
-#include"Pokemon.h"
+#include"PokemonType.h"
 
 Grass forestGrass = {
 	"Forest",

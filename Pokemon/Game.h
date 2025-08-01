@@ -1,9 +1,11 @@
-#include<iostream>
-class Game
-{
-public:
-    Game();
-    // Function to handle the main game loop
-    void gameLoop(Player& player); 
-};
+#include "Grass.h"
 
+class Player;
+
+class Game {
+private:
+	Grass forestGrass;
+public:
+	Game();
+	void gameLoop(Player& player);
+};

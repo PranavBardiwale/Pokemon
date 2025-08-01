@@ -3,7 +3,7 @@
 #include<limits>
 using namespace std;
 
-void utility::clearConsole() {
+void Utility::clearConsole() {
 #ifdef _WIN32
 	system("cls");
 #else
@@ -11,9 +11,10 @@ void utility::clearConsole() {
 #endif
 }
 
-void utility::waitForEnter() {
+void Utility::waitForEnter() {
 	cin.get();
 }
 
-void utility::clearInputBuffer(){
+void Utility::clearInputBuffer(){
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
