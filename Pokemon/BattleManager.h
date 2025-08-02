@@ -1,11 +1,14 @@
 #include "Pokemon.h"
 #include "Player.h"
+#include"BattleState.h"
 
 class BattleManager {
 public:
-	// Function to handle the battle between player's Pokémon and wild Pokémon
-	void startBattle(Player& player, Pokemon& wildPokemon);
+    void startBattle(Player& player, Pokemon& wildPokemon);
 private:
-	void Battle(Pokemon& playerPokemon, Pokemon& wildPokemon);
-	void handleBattleOutcome(Player& player, bool playerWon);
+    BattleState battleState;  // New BattleState object to track the battle
+
+    void battle();
+    void handleBattleOutcome();
+    void updateBattleState(); // Method to update the battle state after each turn
 };
