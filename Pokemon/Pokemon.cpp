@@ -18,7 +18,7 @@ Pokemon::~Pokemon() {
 }
 
 void Pokemon::attack(Pokemon& target) {
-	int damage = 10; // Example damage value, could be based on type or other factors
+	int damage = attackPower; // Example damage value, could be based on type or other factors
 	target.TakeDamage(damage); // Example damage value
 	cout << name << " attacks " << target.name << " for " << damage << " damage!\\n";
 }
@@ -31,4 +31,9 @@ void Pokemon::TakeDamage(int Damage) {
 }
 bool Pokemon::isFainted() const {
 	return health <= 0; // Check if health is 0 or less
+}
+
+int Pokemon::heal() {
+	int healAmount = maxHealth; // Example heal amount
+	return health; // Return the new health value
 }
