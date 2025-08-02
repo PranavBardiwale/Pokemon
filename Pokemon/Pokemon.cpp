@@ -17,4 +17,18 @@ Pokemon::~Pokemon() {
     // Destructor message removed
 }
 
-void Pokemon::attack() { cout << name << " attacks with a powerful move!\n"; }
+void Pokemon::attack(Pokemon& target) {
+	int damage = 10; // Example damage value, could be based on type or other factors
+	target.TakeDamage(damage); // Example damage value
+	cout << name << " attacks " << target.name << " for " << damage << " damage!\\n";
+}
+void Pokemon::TakeDamage(int Damage) {
+	health -= Damage;// Reduce health by the damage taken
+
+    if (health < 0) {
+		health = 0; // Ensure health doesn't go below 0
+    }
+}
+bool Pokemon::isFainted() const {
+	return health <= 0; // Check if health is 0 or less
+}
