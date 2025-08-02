@@ -34,5 +34,5 @@ void Player::choosePokemon(int choice) {
         break;
     }
     cout << "Player " << name << " chose " << chosenPokemon.name << "!\n";
-    utility::waitForEnter(); // Wait for user to press Enter before proceeding
+    Utility::waitForEnter(); // Wait for user to press Enter before proceeding
 }

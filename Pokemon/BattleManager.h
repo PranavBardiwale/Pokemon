@@ -1,5 +1,5 @@
 #include "Pokemon.h"
-#include "Player.h"
+#include "player.h"
 #include"BattleState.h"
 
 class BattleManager {

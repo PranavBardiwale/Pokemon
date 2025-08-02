@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Pokemon.h"
 #include "PokemonType.h"
+#include "player.h"
 #include "utility.h"
 #include "BattleState.h"
 using namespace std;

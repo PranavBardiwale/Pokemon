@@ -1,5 +1,7 @@
 #include<iostream>
+#include "player.h"
 using namespace std;
+
 
 // ProfessorOak class definition
 class ProfessorOak {
