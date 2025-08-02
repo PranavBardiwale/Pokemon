@@ -4,6 +4,7 @@
 #include "utility.h"
 #include "WildEncounterManager.h"
 #include <iostream>
+#include"BattleManager.h"
 using namespace std;
 
 Game::Game() {
@@ -17,6 +18,7 @@ Game::Game() {
 
 void Game::gameLoop(Player& player) {
 
+	BattleManager BattleManager;
     int choice;
     bool keepPlaying = true;
 
@@ -41,8 +43,8 @@ void Game::gameLoop(Player& player) {
         case 1: {
             // Create a scope within case 1
             WildEncounterManager encounterManager;
-            Pokemon encounteredPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
-            cout << "A wild " << encounteredPokemon.name << " appeared!\n";
+            Pokemon wildPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
+			BattleManager.startBattle(player,wildPokemon);;
             break;
         }
         case 2: {
