@@ -4,9 +4,10 @@
 
 Pokemon::Pokemon():name("unknown"),type(PokemonType::NORMAL),health(50){}
 // Parameterized constructor
-Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health): name(p_name),
+Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health,int p_attackPower): name(p_name),
 type(p_type),
-health(p_health) {
+health(p_health),
+attackPower(p_attackPower){
 }
 
 // Copy constructor
