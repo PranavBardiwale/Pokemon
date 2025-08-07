@@ -2,7 +2,7 @@
 #include <iostream>
 #include"PokemonType.h"
 
-Pokemon::Pokemon():name("unknown"),type(PokemonType::NORMAL),health(50){}
+Pokemon::Pokemon():name("unknown"),type(PokemonType::NORMAL),health(50),attackPower(10){}
 // Parameterized constructor
 Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health,int p_attackPower): name(p_name),
 type(p_type),
@@ -11,7 +11,7 @@ attackPower(p_attackPower){
 }
 
 // Copy constructor
-Pokemon::Pokemon(const Pokemon& other):name(other.name),type(other.type),health(other.health) {}
+Pokemon::Pokemon(const Pokemon& other):name(other.name),type(other.type),health(other.health),attackPower(other.attackPower) {}
 
 // Destructor
 Pokemon::~Pokemon() {

@@ -1,11 +1,11 @@
-#include "Caterpie.h"
+#include "Charmander.h"
 #include "PokemonType.h"
 #include <iostream>
 using namespace std;
 
-Caterpie::Caterpie() : Pokemon("Caterpie", PokemonType::BUG, 100, 35) {}
+Charmander::Charmander() : Pokemon("Charmander", PokemonType::FIRE, 100, 35) {}
 
-void Caterpie::bugBite(Pokemon& target) {
+void Charmander::flameThrower(Pokemon& target) {
     cout << name << " uses Flame Thrower on " << target.name << "!\n";
     target.TakeDamage(20);
 }
