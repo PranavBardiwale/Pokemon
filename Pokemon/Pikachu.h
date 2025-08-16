@@ -6,6 +6,6 @@ class Pikachu : public Pokemon
 public:
 	Pikachu();
 private:
-	void thunderShock(Pokemon& target);
+	void attack(Pokemon* target)override;
 };
 

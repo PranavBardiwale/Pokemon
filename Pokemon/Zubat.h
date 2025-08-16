@@ -4,5 +4,5 @@ class Zubat :public Pokemon
 {
 public:
 	Zubat();
-	void superSonic(Pokemon& target);
+	void attack(Pokemon* target)override;
 };

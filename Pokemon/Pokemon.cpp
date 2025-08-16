@@ -18,11 +18,11 @@ Pokemon::~Pokemon() {
     // Destructor message removed
 }
 
-void Pokemon::attack(Pokemon& target) {
+/*void Pokemon::attack(Pokemon& target) {
 	int damage = attackPower; // Example damage value, could be based on type or other factors
 	target.TakeDamage(damage); // Example damage value
 	cout << name << " attacks " << target.name << " for " << damage << " damage!\\n";
-}
+}*/
 void Pokemon::TakeDamage(int Damage) {
 	health -= Damage;// Reduce health by the damage taken
 
