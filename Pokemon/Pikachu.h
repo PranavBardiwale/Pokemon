@@ -1,11 +1,8 @@
 #include"Pokemon.h"
 #pragma once
 
-class Pikachu : public Pokemon
-{
+class Pikachu : public Pokemon {
 public:
-	Pikachu();
-private:
-	void attack(Pokemon* target)override;
+    Pikachu();
+    void attack(Move selectedMove, Pokemon* target) override;
 };
-

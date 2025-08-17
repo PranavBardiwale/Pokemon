@@ -1,38 +1,52 @@
-// Player.cpp
-#include "player.h"
-#include "PokemonChoice.h"
+#include "Game.h"
+#include "BattleManager.h"
+#include "WildEncounterManager.h"
+#include "Player.h"
+#include "Caterpie.h"
+#include "Pidgey.h"
+#include "Zubat.h"
+#include "Utility.h"
+#include <iostream>
+#include"PokemonChoice.h"
 #include "PokemonType.h"
-#include "Pokemon.h"
+#include "Charmander.h"
+#include "Bulbasaur.h"
+#include "Squirtle.h"
 #include "Pikachu.h"
-#include "utility.h"
-#include "iostream"
+#include <iostream>
 using namespace std;
+
+
+
+Game::Game() {
+    // Create a sample grass environment with actual Pokemon objects
+    forestGrass = { "Forest", {new Pidgey(), new Caterpie(), new Zubat()}, 70 };
+}
 
 Player::Player() {
     name = "Trainer";
-    chosenPokemon = Pokemon(); // Using the default Pokemon constructor
 }
 
-Player::Player(string p_name, Pokemon p_chosenPokemon) {
+Player::Player(std::string p_name) {
     name = p_name;
-    chosenPokemon = p_chosenPokemon;
 }
 
 void Player::choosePokemon(int choice) {
     switch ((PokemonChoice)choice) {
     case PokemonChoice::CHARMANDER:
-        chosenPokemon = Pokemon("Charmander", PokemonType::FIRE, 100,10);
+        chosenPokemon = new Charmander();
         break;
     case PokemonChoice::BULBASAUR:
-        chosenPokemon = Pokemon("Bulbasaur", PokemonType::GRASS, 100,8);
+        chosenPokemon = new Bulbasaur();
         break;
     case PokemonChoice::SQUIRTLE:
-        chosenPokemon = Pokemon("Squirtle", PokemonType::WATER, 100,9);
+        chosenPokemon = new Squirtle();
         break;
     default:
-        chosenPokemon = Pikachu();
+        chosenPokemon = new Pikachu();
         break;
     }
-    cout << "Player " << name << " chose " << chosenPokemon.name << "!\n";
-    Utility::waitForEnter(); // Wait for user to press Enter before proceeding
+    std::cout << "Player " << name << " chose " << chosenPokemon->name << "!\n";
+    Utility::waitForEnter(); // Wait for user to press Enter before
+    // proceeding
 }

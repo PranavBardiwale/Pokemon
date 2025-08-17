@@ -1,8 +1,12 @@
-#include <vector>
-#include "Grass.h" // Assuming the Grass struct is defined here 
+#include "Pokemon.h"
+
+struct Grass;
+class Pokemon;
+
+
 
 class WildEncounterManager {
 public:
-	Pokemon getRandomPokemonFromGrass(const Grass& grass
-	);
+    WildEncounterManager();
+    Pokemon* getRandomPokemonFromGrass(const Grass& grass);
 };

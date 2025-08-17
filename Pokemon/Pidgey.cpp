@@ -1,12 +1,30 @@
 #include "Pidgey.h"
 #include<iostream>
 #include "PokemonType.h"
+#include "Move.h"
+#include "BattleManager.h"
+#include "Utility.h"
 using namespace std;
 
-Pidgey::Pidgey() : Pokemon("Pidgey", PokemonType::NORMAL, 100, 35) {}
+Pidgey::Pidgey()
+    : Pokemon("Pidgey", PokemonType::FLYING, 80, {
+        Move("GUST", 15),
+        Move("TACKLE", 10)
+        }) {
+}
 
-void Pidgey::attack(Pokemon* target) {
-	wingAttack(target);
-	cout << name << " uses Vine Whip on " << target.name << "!\n";
-	target.TakeDamage(20);
+void Pidgey::attack(Move selectedMove, Pokemon* target)
+{
+    Pokemon::attack(selectedMove, target);
+
+    if (selectedMove.name == "GUST")
+    {
+        // 20% chance to blow the opponent away
+        if (rand() % 100 < 20)
+        {
+            std::cout << "... and blew the opponent away!\n";
+            BattleManager::stopBattle();
+            Utility::Utility::waitForEnter();
+        }
+    }
 }

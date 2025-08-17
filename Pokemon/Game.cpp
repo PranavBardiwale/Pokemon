@@ -5,29 +5,31 @@
 #include "WildEncounterManager.h"
 #include <iostream>
 #include"BattleManager.h"
+#include "Caterpie.h"
+#include "Pidgey.h"
+#include "Zubat.h"
+#include "Utility.h"
+#include <iostream>
 using namespace std;
 
 Game::Game() {
     // Create a sample grass environment with actual Pokemon objects
-    forestGrass = { "Forest",
-                   {Pokemon("Pidgey", PokemonType::NORMAL, 40),
-                    Pokemon("Caterpie", PokemonType::BUG, 35),
-                    Pokemon("Zubat", PokemonType::POISON, 30)},
-                   70 };
+    forestGrass = { "Forest", {new Pidgey(), new Caterpie(), new Zubat()}, 70 };
 }
 
-void Game::gameLoop(Player& player) {
+void Game::gameLoop(Player* player) {
 
-	BattleManager BattleManager;
     int choice;
     bool keepPlaying = true;
+    BattleManager* battleManager = new BattleManager();
+    WildEncounterManager* encounterManager = new WildEncounterManager();
 
     while (keepPlaying) {
         // Clear console before showing options
         Utility::clearConsole();
 
         // Display options to the player
-        cout << "\nWhat would you like to do next, " << player.name << "?\n";
+        cout << "\nWhat would you like to do next, " << player->name << "?\n";
         cout << "1. Battle Wild Pokémon\n";
         cout << "2. Visit PokeCenter\n";
         cout << "3. Challenge Gyms\n";
@@ -41,16 +43,12 @@ void Game::gameLoop(Player& player) {
         // Process the player's choice and display the corresponding message
         switch (choice) {
         case 1: {
-            // Create a scope within case 1
-            WildEncounterManager encounterManager;
-            Pokemon wildPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
-			BattleManager.startBattle(player,wildPokemon);;
+            wildPokemon = encounterManager->getRandomPokemonFromGrass(forestGrass);
+            battleManager->startBattle(player, wildPokemon);
             break;
         }
         case 2: {
-            cout << "You head to the PokeCenter.\\n";
-			player.chosenPokemon.heal();
-			cout << player.chosenPokemon.name << " has been healed to full health!\n";
+            visitPokeCenter(player);
             break;
         }
         case 3: {
@@ -85,5 +83,27 @@ void Game::gameLoop(Player& player) {
         Utility::waitForEnter();
     }
 
-    cout << "Goodbye, " << player.name << "! Thanks for playing!\n";
+    cout << "Goodbye, " << player->name << "! Thanks for playing!\n";
+
+    delete(encounterManager);
+    delete(battleManager);
+}
+
+void Game::visitPokeCenter(Player* player) {
+    if (player->chosenPokemon->health == player->chosenPokemon->maxHealth) {
+        std::cout << "Your Pokémon is already at full health!\n";
+    }
+    else {
+        std::cout << "You head to the PokeCenter.\n";
+        std::cout << "Healing your Pokémon...\n";
+        Utility::waitForEnter(); // Simulate a short pause for the
+        // healing process
+        player->chosenPokemon->heal();        // Heal the player's Pokémon
+        std::cout << player->chosenPokemon->name << "'s health is fully restored!\n";
+    }
+}
+
+Game::~Game()
+{
+    delete(wildPokemon);
 }

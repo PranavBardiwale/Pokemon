@@ -1,12 +1,27 @@
 #include "Charmander.h"
 #include "PokemonType.h"
+#include "Move.h"
+#include "Utility.h"
 #include <iostream>
 using namespace std;
 
-Charmander::Charmander() : Pokemon("Charmander", PokemonType::FIRE, 100, 35) {}
+Charmander::Charmander()
+    : Pokemon("Charmander", PokemonType::FIRE, 95, {
+        Move("EMBER", 20),
+        Move("SCRATCH", 15),
+        Move("BLAZING CHARGE", 70)
+        }) {
+}
 
-void Charmander::attack(Pokemon* target) {
-	flameThrower(target);
-    cout << name << " uses Flame Thrower on " << target.name << "!\n";
-    target.TakeDamage(20);
+void Charmander::attack(Move selectedMove, Pokemon* target)
+{
+    Pokemon::attack(selectedMove, target);
+
+    if (selectedMove.name == "BLAZING CHARGE")
+    {
+        // Recoil effect: Charmander takes recoil damage
+        this->takeDamage(10); // Fixed recoil damage
+        std::cout << name << " takes 10 recoil damage from the Blazing Charge!\n";
+        Utility::Utility::waitForEnter();
+    }
 }

@@ -7,33 +7,32 @@
 #include "BattleState.h"
 using namespace std;
 
-void BattleManager::startBattle(Player& player, Pokemon& wildPokemon) {
-    battleState.playerPokemon = &player.chosenPokemon;
-    battleState.wildPokemon = &wildPokemon;
-    battleState.playerTurn = true;  // Player starts first
+BattleState BattleManager::battleState;
+
+void BattleManager::startBattle(Player* player, Pokemon* wildPokemon) {
+    battleState.playerPokemon = player->chosenPokemon;
+    battleState.wildPokemon = wildPokemon;
+    battleState.playerTurn = true;
     battleState.battleOngoing = true;
 
-    std::cout << "A wild " << wildPokemon.name << " appeared!\\n";
+    cout << "A wild " << wildPokemon->name << " appeared!\n";
+    Utility::waitForEnter();
+
     battle();
 }
 
+void BattleManager::stopBattle() { battleState.battleOngoing = false; }
+
 void BattleManager::battle() {
-    while (battleState.battleOngoing) {
-        if (battleState.playerTurn) {
-            // Player's turn to attack
-			battleState.playerPokemon->attack(*battleState.wildPokemon);
-        }
-        else {
-            // Wild Pokémon's turn to attack
-            battleState.wildPokemon->attack(*battleState.playerPokemon);
-        }
+    while (battleState.battleOngoing)
+    {
+        if (battleState.playerTurn)
+            battleState.playerPokemon->selectAndUseMove(battleState.wildPokemon);
+        else
+            battleState.wildPokemon->selectAndUseMove(battleState.playerPokemon);
 
-        // Update the battle state after the turn
         updateBattleState();
-
-        // Switch turns
         battleState.playerTurn = !battleState.playerTurn;
-
         Utility::waitForEnter();
     }
 
@@ -51,9 +50,10 @@ void BattleManager::updateBattleState() {
 
 void BattleManager::handleBattleOutcome() {
     if (battleState.playerPokemon->isFainted()) {
-        std::cout << battleState.playerPokemon->name << " has fainted! You lose the battle.\\n";
+        cout << battleState.playerPokemon->name
+            << " has fainted! You lose the battle.\n";
     }
     else {
-        std::cout << "You defeated the wild " << battleState.wildPokemon->name << "!\\n";
+        cout << "You defeated the wild " << battleState.wildPokemon->name << "!\n";
     }
 }

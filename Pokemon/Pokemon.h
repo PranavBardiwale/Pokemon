@@ -1,33 +1,35 @@
 #include <string>
+#include <vector>
+#include "Move.h"
 using namespace std;
 
 enum class PokemonType;
 
+struct Move;
+enum class PokemonType;
+
 class Pokemon {
-protected:
-    string name;
+public:
+    std::string name;
     PokemonType type;
     int health;
     int maxHealth;
-    int attackPower;
-public:
-    // Default constructor
+    vector<Move> moves; // Store the list of moves
+
     Pokemon();
+    Pokemon(std::string p_name, PokemonType p_type, int p_health, vector<Move>);
+    Pokemon(Pokemon* other);
 
-    // Parameterized constructor
-    Pokemon(string p_name, PokemonType p_type, int p_health,int attackPower);
+    bool isFainted() const;
+    void heal();
+    virtual void attack(Move selectedMove, Pokemon* target);
+    void takeDamage(int damage);
+    void selectAndUseMove(Pokemon* target);
+    void reduceAttackPower(int reduced_damage);
 
-    // Copy constructor
-    Pokemon(const Pokemon& other);
-
-    // Destructor
-    ~Pokemon();
-
-    virtual void attack(Pokemon * target)=0;
-
-	void TakeDamage(int damage);
-
-	bool isFainted() const;
-
-    int heal();
+protected:
+    // Base implementation for selecting and using a move
+    void printAvailableMoves();
+    int selectMove();
+    void useMove(Move selectedMove, Pokemon* target);
 };

@@ -1,40 +1,110 @@
 #include "Pokemon.h"
 #include <iostream>
 #include"PokemonType.h"
+#include "Move.h"
+#include "Utility.h"
 
-Pokemon::Pokemon():name("unknown"),type(PokemonType::NORMAL),health(50),attackPower(10){}
+// Default constructor
+Pokemon::Pokemon() {
+    name = "Unknown";
+    type = PokemonType::NORMAL;
+    health = 50;
+    maxHealth = 50;
+}
+
 // Parameterized constructor
-Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health,int p_attackPower): name(p_name),
-type(p_type),
-health(p_health),
-attackPower(p_attackPower){
+Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health, vector<Move> p_moves) {
+    name = p_name;
+    type = p_type;
+    maxHealth = p_health;
+    health = p_health;
+    moves = p_moves;
 }
 
 // Copy constructor
-Pokemon::Pokemon(const Pokemon& other):name(other.name),type(other.type),health(other.health),attackPower(other.attackPower) {}
-
-// Destructor
-Pokemon::~Pokemon() {
-    // Destructor message removed
+Pokemon::Pokemon(Pokemon* other) {
+    name = other->name;
+    type = other->type;
+    health = other->health;
+    maxHealth = other->maxHealth;
+    moves = other->moves;
 }
 
-/*void Pokemon::attack(Pokemon& target) {
-	int damage = attackPower; // Example damage value, could be based on type or other factors
-	target.TakeDamage(damage); // Example damage value
-	cout << name << " attacks " << target.name << " for " << damage << " damage!\\n";
-}*/
-void Pokemon::TakeDamage(int Damage) {
-	health -= Damage;// Reduce health by the damage taken
-
+// Reduce HP by the damage amount
+void Pokemon::takeDamage(int damage) {
+    health -= damage;
     if (health < 0) {
-		health = 0; // Ensure health doesn't go below 0
+        health = 0;
     }
 }
-bool Pokemon::isFainted() const {
-	return health <= 0; // Check if health is 0 or less
+
+void Pokemon::selectAndUseMove(Pokemon* target)
+{
+    printAvailableMoves();
+
+    int choice = selectMove();
+    Move selectedMove = moves[choice - 1];
+
+    useMove(selectedMove, target);
 }
 
-int Pokemon::heal() {
-	int healAmount = maxHealth; // Example heal amount
-	return health; // Return the new health value
+void Pokemon::reduceAttackPower(int reduced_damage)
+{
+    for (int i = 0; i < moves.size(); i++)
+    {
+        moves[i].power -= reduced_damage;
+        if (moves[i].power < 0)
+            moves[i].power = 0;
+    }
+}
+
+void Pokemon::printAvailableMoves()
+{
+    cout << name << "'s available moves:\n";
+
+    // List out all moves for the player to choose from
+    for (size_t i = 0; i < moves.size(); ++i) {
+        cout << i + 1 << ": " << moves[i].name << " (Power: " << moves[i].power << ")\n";
+    }
+}
+
+int Pokemon::selectMove()
+{
+    // Ask the player to select a move
+    int choice;
+    cout << "Choose a move: ";
+    cin >> choice;
+
+    // Validate the choice
+    while (choice < 1 || choice > static_cast<int>(moves.size())) {
+        cout << "Invalid choice. Try again: ";
+        cin >> choice;
+    }
+
+    return choice;
+}
+
+void Pokemon::useMove(Move selectedMove, Pokemon* target)
+{
+    cout << name << " used " << selectedMove.name << "!\n";
+    attack(selectedMove, target);
+
+    Utility::Utility::waitForEnter();
+
+    cout << "...\n";
+    Utility::Utility::waitForEnter();
+
+    if (target->isFainted())
+        cout << target->name << " fainted!\n";
+    else
+        cout << target->name << " has " << target->health << " HP left.\n";
+}
+
+void Pokemon::attack(Move selectedMove, Pokemon* target) { target->takeDamage(selectedMove.power); }
+
+// Check if the Pokemon has fainted
+bool Pokemon::isFainted() const { return health <= 0; }
+
+// Restore health to full
+void Pokemon::heal() { health = maxHealth; 
 }

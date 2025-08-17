@@ -1,14 +1,18 @@
-#include "Pokemon.h"
-#include "player.h"
-#include"BattleState.h"
+#pragma once
+#include "BattleState.h"
+#include "Player.h"
+
+
+class Pokemon;
 
 class BattleManager {
 public:
-    void startBattle(Player& player, Pokemon& wildPokemon);
+    void startBattle(Player* player, Pokemon* wildPokemon);
+    static void stopBattle();
 private:
-    BattleState battleState;  // New BattleState object to track the battle
+    static BattleState battleState;
 
     void battle();
     void handleBattleOutcome();
-    void updateBattleState(); // Method to update the battle state after each turn
+    void updateBattleState();
 };
