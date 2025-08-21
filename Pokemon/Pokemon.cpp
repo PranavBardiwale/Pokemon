@@ -3,6 +3,7 @@
 #include"PokemonType.h"
 #include "Move.h"
 #include "Utility.h"
+#include "ParalyzedEffect.h"
 
 // Default constructor
 Pokemon::Pokemon() {
@@ -19,6 +20,7 @@ Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health, vector<Move> p
     maxHealth = p_health;
     health = p_health;
     moves = p_moves;
+	appliedEffect = nullptr; // Initialize the effect pointer to nullptr
 }
 
 // Copy constructor
@@ -55,6 +57,29 @@ void Pokemon::reduceAttackPower(int reduced_damage)
         moves[i].power -= reduced_damage;
         if (moves[i].power < 0)
             moves[i].power = 0;
+    }
+}
+
+bool Pokemon::canAttack() {
+    if (appliedEffect != nullptr) {
+        return true;
+    }
+    else
+		return appliedEffect->turnEndEffect(this);
+}
+
+bool Pokemon::canApplyEffect() {
+    return appliedEffect == nullptr;
+}
+
+void Pokemon::applyEffect(StatusEffectType effectToType) {
+    switch (effectToType) {
+    case StatusEffectType :: PARALYZED:
+		appliedEffect = new ParalyzedEffect();
+        appliedEffect->applyEffect(this);
+        break;
+    default:
+		appliedEffect = nullptr; // No effect applied
     }
 }
 

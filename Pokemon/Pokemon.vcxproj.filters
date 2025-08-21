@@ -63,6 +63,36 @@
     <ClCompile Include="Zubat.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Charmander.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Squirtle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Bulbasaur.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveName.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="IStatusEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="ParalyzedEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusEffectType.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="BurnedEffect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Poised.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PokemonType.h">
@@ -108,6 +138,36 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="Zubat.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Charmander.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Squirtle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Bulbasaur.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveName.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="IStatusEffect.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="ParalyzedEffect.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusEffectType.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="BurnedEffect.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Poised.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

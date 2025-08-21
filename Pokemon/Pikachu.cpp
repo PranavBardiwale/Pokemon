@@ -25,7 +25,13 @@ void Pikachu::attack(Move selectedMove, Pokemon* target)
         else
             std::cout << "... but it missed!\n";
     }
-    else
-        Pokemon::attack(selectedMove, target);
+    else if (selectedMove.name == "THUNDER SHOCK") {
+        if (target->canApplyEffect())
+            target->applyEffect(StatusEffectType::PARALYZED);
+    }
+    else {
+		Pokemon::attack(selectedMove, target);
+    }
+        
 
 }

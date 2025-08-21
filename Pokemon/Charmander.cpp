@@ -24,4 +24,11 @@ void Charmander::attack(Move selectedMove, Pokemon* target)
         std::cout << name << " takes 10 recoil damage from the Blazing Charge!\n";
         Utility::Utility::waitForEnter();
     }
+    else if (selectedMove.name == "EMBER") {
+        if (target->canApplyEffect())
+            target->applyEffect(StatusEffectType::PARALYZED);
+    }
+    else {
+        Pokemon::attack(selectedMove, target);
+    }
 }

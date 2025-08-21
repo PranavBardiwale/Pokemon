@@ -1,6 +1,9 @@
 #include <string>
 #include <vector>
 #include "Move.h"
+#include "IStatusEffect.h"
+#pragma once
+#include"StatusEffectType.h"
 using namespace std;
 
 enum class PokemonType;
@@ -15,6 +18,8 @@ public:
     int health;
     int maxHealth;
     vector<Move> moves; // Store the list of moves
+    IStatusEffect* appliedEffect;
+
 
     Pokemon();
     Pokemon(std::string p_name, PokemonType p_type, int p_health, vector<Move>);
@@ -26,6 +31,11 @@ public:
     void takeDamage(int damage);
     void selectAndUseMove(Pokemon* target);
     void reduceAttackPower(int reduced_damage);
+    bool canAttack();
+	bool canApplyEffect();
+    void applyEffect(StatusEffectType effectToApply);
+	void clearEffect();
+
 
 protected:
     // Base implementation for selecting and using a move

@@ -28,4 +28,11 @@ void Zubat::attack(Move selectedMove, Pokemon* target)
 
         std::cout << "... and regained health!\n";
     }
+    else if (selectedMove.name == "BITE") {
+        if (target->canApplyEffect())
+            target->applyEffect(StatusEffectType::PARALYZED);
+    }
+    else {
+        Pokemon::attack(selectedMove, target);
+    }
 }
